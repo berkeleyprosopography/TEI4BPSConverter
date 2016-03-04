@@ -44,10 +44,22 @@ Optionally, output to file with
     
 ## Obtaining this code
 
-You will need git installed. Open terminal in a parent folder of your choice and do 
+You will need git and pip installed. 
+Open terminal in a parent folder of your choice and do 
 
 	git clone git@github.com:berkeleyprosopography/TEI4BPSConverter.git
 	
 This will create a local copy of this codebase on your computer. 
-
 Alternatively, you can click on "Download ZIP" on the sidebar and uncompress said zip file in a folder of your choice.
+
+After you have obtained the code, you will need to install the libraries to make the converter run. 
+If you do not wish to install the libraries system-wide, you can use a virtual environment, like so
+
+	virtualenv venv
+	source venv/bin/activate
+	pip install -r requirements.txt
+	
+Or you can install directly on your system with:
+	
+	sudo pip install -r requirements.txt
+	
