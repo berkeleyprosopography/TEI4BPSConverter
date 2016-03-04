@@ -1,17 +1,10 @@
 #!/bin/python
 
 '''
-This scripts folllows this attribute mapping
+CSV to TEI4BPS converter
 
-0	text_ID
-1	Day
-2	Month
-3	Year
-4	Activity
-5	Activity_attribute
-6	Role
-7	Person_name
-8	Person_attribute					
+Written by Davide Semenzin
+Berkeley Prosopography Services				
 
 '''
 
@@ -23,6 +16,9 @@ from collections import defaultdict
 from colorlog import ColoredFormatter
 import logging
 import time
+from enum import Enum
+from dateutil.parser import parse
+
 
 # Configure argparser
 parser = argparse.ArgumentParser( description='Convert CSV to TEI')
@@ -44,6 +40,26 @@ log = logging.getLogger('TEI4BPS Converter')
 log.setLevel(LOG_LEVEL)
 log.addHandler(stream)
 
+# Define the attribute mapping to CSV columns
+class Field(Enum):
+    Text_ID           	= 0
+    Date     			= 4
+    Activity            = 5
+    Activity_attribute  = 6
+    Role             	= 7
+    Role_attribute      = 8
+    Person_name         = 9
+    Person_attribute    = 10
+    Relation			= 11
+
+
+def parse_date(input_date):
+	ret = ""
+	try:
+		ret = parse(input_date)
+	except:
+		log.error('Could not process date "{0}", skipping.'.format(input_date))
+	return ret
 
 def parse_tags(input_string):
 	ret = {}
@@ -79,29 +95,43 @@ def ingest(file):
 
 
 def convert(data, size):	
-	log.warn("Now converting {0} persons in {1} documents to TEI4BPS. (Average of {2} persons per document)".format( size, len(data), size/len(data) ))
+	log.warn("Now converting {0} rows in {1} documents to TEI4BPS. (Average of {2} rows per document)".format( size, len(data), size/len(data) ))
 	root = etree.Element('teiCorpus')
 
+	# This loop iterates over the documents in the Defaultdict
 	for document in data:
+		# Header goes here
 
 		tei = etree.SubElement(root, 'TEI')
 		text = etree.SubElement(tei, "text")
 		text.attrib["text_ID"] = str(document)
 
-		for line in data[document]:
-			log.warn("Processing document {0}, ".format(str(line[0])))
 
-			day, month, year = line[1], line[2], line[3]
-			
-			text.attrib["full_date"] = str(day + ' ' + month + ' ' + year + "AD")
+		# Find all activities inside a document
+		activities = defaultdict()
+		for line in data[document]:
+			date = str(parse_date(line[Field.Date]))
+			try:
+				activities[date].append(line)
+			except:
+				log.error('Not going to add "{0}".'.format(date))
+
+		# Find all persons inside an activity
+		for activity in activities:
+			log.warn("Processing document {0}, ".format(str(line[Field.Text_ID])))
+
+
+			text.attrib["full_date"] = str(parse_date(line[Field.Date]))
+			#day, month, year = line[1], line[2], line[3]
+			#text.attrib["full_date"] = str(day + ' ' + month + ' ' + year + "AD")
 			
 			body = etree.SubElement(text, "body")
 
 			div = etree.SubElement(body, "div" )
 			div.attrib["type"] = "activity"
-			div.attrib["subtype"] = str(line[4])
+			div.attrib["subtype"] = str(line[Field.Role])
 			
-			for key, value in parse_tags(str(line[5])).iteritems():
+			for key, value in parse_tags(str(line[Field.Role_attribute])).iteritems():
 				tag = etree.SubElement(div, "feature" )
 				tag.attrib[str(key)] = str(value)
 
