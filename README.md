@@ -41,3 +41,13 @@ Run with
 Optionally, output to file with 
 
     python TEI-import.py --input input_data.csv --output outfile
+    
+## Obtaining this code
+
+You will need git installed. Open terminal in a parent folder of your choice and do 
+
+	git clone git@github.com:berkeleyprosopography/TEI4BPSConverter.git
+	
+This will create a local copy of this codebase on your computer. 
+
+Alternatively, you can click on "Download ZIP" on the sidebar and uncompress said zip file in a folder of your choice.
