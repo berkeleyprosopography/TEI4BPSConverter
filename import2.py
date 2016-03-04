@@ -23,10 +23,10 @@ from collections import defaultdict
 
 parser = argparse.ArgumentParser( description='Convert CSV to TEI')
 
-parser.add_argument('--output', '-of', default=None, type=str,
+parser.add_argument('--output', '-o', default=None, type=str,
                     help="relative path of output file")
 
-parser.add_argument('--input', '-if', default=None, type=str,
+parser.add_argument('--input', '-i', default=None, type=str,
                     help="relative path of input file")
 
 args = parser.parse_args()
@@ -38,7 +38,7 @@ def parse_tags(input_string):
 		pairs = input_string.split('|')
 		for pair in pairs:
 			a = pair.split(':')
-			ret[a[0]] = a[1]
+			ret[a[0].strip()] = a[1].strip()
 	except:
 		pass
 	return ret
@@ -83,11 +83,10 @@ def convert(data):
 			div = etree.SubElement(body, "div" )
 			div.attrib["type"] = "activity"
 			div.attrib["subtype"] = str(line[4])
-			print "maos"
+			
 			for key, value in parse_tags(str(line[5])).iteritems():
 				tag = etree.SubElement(div, "feature" )
-				div.attrib["type"] = "activity"
-				div.attrib["subtype"] = str(line[4])
+				tag.attrib[str(key)] = str(value)
 
 			perslist = etree.SubElement(div, 'p')
 
@@ -99,8 +98,7 @@ def convert(data):
 
 			for key, value in parse_tags(str(line[5])).iteritems():
 				tag = etree.SubElement(div, "feature" )
-				div.attrib["type"] = "activity"
-				div.attrib["subtype"] = str(line[4])
+				tag.attrib[str(key)] = str(value)
 
 
 	return etree.tostring(root, pretty_print=True)
