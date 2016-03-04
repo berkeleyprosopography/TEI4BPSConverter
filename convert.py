@@ -1,17 +1,10 @@
 #!/bin/python
 
 '''
-This scripts folllows this attribute mapping
+CSV to TEI4BPS converter
 
-0	text_ID
-1	Day
-2	Month
-3	Year
-4	Activity
-5	Activity_attribute
-6	Role
-7	Person_name
-8	Person_attribute					
+Written by Davide Semenzin
+Berkeley Prosopography Services				
 
 '''
 
@@ -23,6 +16,9 @@ from collections import defaultdict
 from colorlog import ColoredFormatter
 import logging
 import time
+from enum import Enum
+from datautil.date import parse
+
 
 # Configure argparser
 parser = argparse.ArgumentParser( description='Convert CSV to TEI')
@@ -44,6 +40,27 @@ log = logging.getLogger('TEI4BPS Converter')
 log.setLevel(LOG_LEVEL)
 log.addHandler(stream)
 
+# Define the attribute mapping to CSV columns
+class Field(Enum):
+    Text_ID           	= 0
+    Date     			= 1
+    Activity            = 2
+    Activity_attribute  = 3
+    Role             	= 4
+    Role_attribute      = 5
+    Person_name         = 6
+    Person_attribute    = 7
+    Relation			= 8
+
+
+def parse_date(input_date):
+	ret = ""
+	try:
+		ret = parse(unicode(input_date, "utf-8"))
+	except Exception as e:
+		log.error('Could not process date "{0}", skipping.'.format(input_date))
+		log.error('Error is: {0}'.format(str(e)))
+	return ret
 
 def parse_tags(input_string):
 	ret = {}
@@ -79,43 +96,64 @@ def ingest(file):
 
 
 def convert(data, size):	
-	log.warn("Now converting {0} persons in {1} documents to TEI4BPS. (Average of {2} persons per document)".format( size, len(data), size/len(data) ))
+	log.warn("Now converting {0} rows in {1} documents to TEI4BPS. (Average of {2} rows per document)".format( size, len(data), size/len(data) ))
 	root = etree.Element('teiCorpus')
 
+	# This loop iterates over the documents in the Defaultdict
 	for document in data:
+		# Header goes here
 
 		tei = etree.SubElement(root, 'TEI')
 		text = etree.SubElement(tei, "text")
 		text.attrib["text_ID"] = str(document)
 
-		for line in data[document]:
-			log.warn("Processing document {0}, ".format(str(line[0])))
 
-			day, month, year = line[1], line[2], line[3]
-			
-			text.attrib["full_date"] = str(day + ' ' + month + ' ' + year + "AD")
-			
+		# Find all activities inside a document
+		activities = defaultdict(list)
+		for line in data[document]:
+			date = parse_date(line[Field.Date])
+			try:
+				activities[str(date)].append(line)
+			except Exception as e:
+				log.error('Not going to add "{0}" to {1}.'.format(date, document))
+				log.error('Error is: {0}'.format(str(e)))
+
+		log.warn("Found {0} activities in document {1}, ".format( len(activities), str(line[Field.Text_ID])))
+
+		# Traverse the activities list
+		for uid, activity in enumerate(activities):
+			text.attrib["full_date"] = activity
+
+			data_entry = activities[activity][uid]
+		
 			body = etree.SubElement(text, "body")
 
 			div = etree.SubElement(body, "div" )
 			div.attrib["type"] = "activity"
-			div.attrib["subtype"] = str(line[4])
+			div.attrib["subtype"] = str(data_entry[Field.Activity])
 			
-			for key, value in parse_tags(str(line[5])).iteritems():
+			# Add attributes
+			for key, value in parse_tags(str(data_entry[Field.Activity_attribute])).iteritems():
 				tag = etree.SubElement(div, "feature" )
 				tag.attrib[str(key)] = str(value)
 
+			# Add persons
 			perslist = etree.SubElement(div, 'p')
 
-			pers1name = etree.SubElement(perslist, "persName")
-			pers1name.attrib['role'] = str(line[6])
 
-			pers_forename = etree.SubElement(pers1name, "forename")
-			pers_forename.text = clean_ascii(line[7])
+			print activities[activity]
 
-			for key, value in parse_tags(str(line[5])).iteritems():
-				tag = etree.SubElement(div, "feature" )
-				tag.attrib[str(key)] = str(value)
+			for person in activities[activity]:
+				print "CONSIDERING PERSON", person
+				pers_name = etree.SubElement(perslist, "persName")
+				pers_name.attrib['role'] = str(person[Field.Role])
+
+				pers_forename = etree.SubElement(pers_name, "forename")
+				pers_forename.text = clean_ascii(person[Field.Person_name])
+
+				for key, value in parse_tags(str(person[Field.Person_attribute])).iteritems():
+					tag = etree.SubElement(pers_name, "feature" )
+					tag.attrib[str(key)] = str(value)
 
 	log.warn("Ok, conversion complete.")
 	return etree.tostring(root, pretty_print=True)
