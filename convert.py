@@ -17,7 +17,7 @@ from colorlog import ColoredFormatter
 import logging
 import time
 from enum import Enum
-from dateutil.parser import parse
+from datautil.date import parse
 
 
 # Configure argparser
@@ -43,22 +43,23 @@ log.addHandler(stream)
 # Define the attribute mapping to CSV columns
 class Field(Enum):
     Text_ID           	= 0
-    Date     			= 4
-    Activity            = 5
-    Activity_attribute  = 6
-    Role             	= 7
-    Role_attribute      = 8
-    Person_name         = 9
-    Person_attribute    = 10
-    Relation			= 11
+    Date     			= 1
+    Activity            = 2
+    Activity_attribute  = 3
+    Role             	= 4
+    Role_attribute      = 5
+    Person_name         = 6
+    Person_attribute    = 7
+    Relation			= 8
 
 
 def parse_date(input_date):
 	ret = ""
 	try:
-		ret = parse(input_date)
-	except:
+		ret = parse(unicode(input_date, "utf-8"))
+	except Exception as e:
 		log.error('Could not process date "{0}", skipping.'.format(input_date))
+		log.error('Error is: {0}'.format(str(e)))
 	return ret
 
 def parse_tags(input_string):
@@ -108,44 +109,51 @@ def convert(data, size):
 
 
 		# Find all activities inside a document
-		activities = defaultdict()
+		activities = defaultdict(list)
 		for line in data[document]:
-			date = str(parse_date(line[Field.Date]))
+			date = parse_date(line[Field.Date])
 			try:
-				activities[date].append(line)
-			except:
-				log.error('Not going to add "{0}".'.format(date))
+				activities[str(date)].append(line)
+			except Exception as e:
+				log.error('Not going to add "{0}" to {1}.'.format(date, document))
+				log.error('Error is: {0}'.format(str(e)))
 
-		# Find all persons inside an activity
-		for activity in activities:
-			log.warn("Processing document {0}, ".format(str(line[Field.Text_ID])))
+		log.warn("Found {0} activities in document {1}, ".format( len(activities), str(line[Field.Text_ID])))
 
+		# Traverse the activities list
+		for uid, activity in enumerate(activities):
+			text.attrib["full_date"] = activity
 
-			text.attrib["full_date"] = str(parse_date(line[Field.Date]))
-			#day, month, year = line[1], line[2], line[3]
-			#text.attrib["full_date"] = str(day + ' ' + month + ' ' + year + "AD")
-			
+			data_entry = activities[activity][uid]
+		
 			body = etree.SubElement(text, "body")
 
 			div = etree.SubElement(body, "div" )
 			div.attrib["type"] = "activity"
-			div.attrib["subtype"] = str(line[Field.Role])
+			div.attrib["subtype"] = str(data_entry[Field.Activity])
 			
-			for key, value in parse_tags(str(line[Field.Role_attribute])).iteritems():
+			# Add attributes
+			for key, value in parse_tags(str(data_entry[Field.Activity_attribute])).iteritems():
 				tag = etree.SubElement(div, "feature" )
 				tag.attrib[str(key)] = str(value)
 
+			# Add persons
 			perslist = etree.SubElement(div, 'p')
 
-			pers1name = etree.SubElement(perslist, "persName")
-			pers1name.attrib['role'] = str(line[6])
 
-			pers_forename = etree.SubElement(pers1name, "forename")
-			pers_forename.text = clean_ascii(line[7])
+			print activities[activity]
 
-			for key, value in parse_tags(str(line[5])).iteritems():
-				tag = etree.SubElement(div, "feature" )
-				tag.attrib[str(key)] = str(value)
+			for person in activities[activity]:
+				print "CONSIDERING PERSON", person
+				pers_name = etree.SubElement(perslist, "persName")
+				pers_name.attrib['role'] = str(person[Field.Role])
+
+				pers_forename = etree.SubElement(pers_name, "forename")
+				pers_forename.text = clean_ascii(person[Field.Person_name])
+
+				for key, value in parse_tags(str(person[Field.Person_attribute])).iteritems():
+					tag = etree.SubElement(pers_name, "feature" )
+					tag.attrib[str(key)] = str(value)
 
 	log.warn("Ok, conversion complete.")
 	return etree.tostring(root, pretty_print=True)
