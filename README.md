@@ -36,11 +36,11 @@ The key is going to be interpreted as an attribute of the object it refers to. T
 
 Run with 
 
-    python TEI-import.py --input input_data.csv
+    python convert.py -i input_data.csv
     
 Optionally, output to file with 
 
-    python TEI-import.py --input input_data.csv --output outfile
+    python convert.py --input input_data.csv --output outfile
     
 ## Obtaining this code
 
