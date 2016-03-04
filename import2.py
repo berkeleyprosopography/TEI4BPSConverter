@@ -20,16 +20,29 @@ from lxml import etree
 import argparse
 from curses import ascii
 from collections import defaultdict
+from colorlog import ColoredFormatter
+import logging
+import time
 
+# Configure argparser
 parser = argparse.ArgumentParser( description='Convert CSV to TEI')
-
 parser.add_argument('--output', '-o', default=None, type=str,
                     help="relative path of output file")
-
 parser.add_argument('--input', '-i', default=None, type=str,
                     help="relative path of input file")
-
 args = parser.parse_args()
+
+# Configure logging
+LOG_LEVEL = logging.DEBUG
+LOGFORMAT = "  %(log_color)s%(levelname)-8s%(reset)s | %(log_color)s%(message)s%(reset)s"
+logging.root.setLevel(LOG_LEVEL)
+formatter = ColoredFormatter(LOGFORMAT)
+stream = logging.StreamHandler()
+stream.setLevel(LOG_LEVEL)
+stream.setFormatter(formatter)
+log = logging.getLogger('TEI4BPS Converter')
+log.setLevel(LOG_LEVEL)
+log.addHandler(stream)
 
 
 def parse_tags(input_string):
@@ -43,26 +56,30 @@ def parse_tags(input_string):
 		pass
 	return ret
 
+
 def clean_ascii(text):
     return str(''.join(
             ascii.isprint(c) and c or '?' for c in text
             )) 
 
+
 def ingest(file):
+	log.warn("Loading {0}".format(str(file)))
 	f = open(file, 'r')
 	c = csv.reader(f)
-	ret = defaultdict(list)
+	data = defaultdict(list)
 
+	size =0
 	for line in c:
-		ret[str(line[0])].append(line)
+		data[str(line[0])].append(line)
+		size += 1
 
-	print "Read {0} documents".format(len(ret))
+	log.warn("Found {0} documents basing on Text_ID".format(len(data)))
+	return data, size, f
 
-	return ret
 
-
-def convert(data):	
-
+def convert(data, size):	
+	log.warn("Now converting {0} persons in {1} documents to TEI4BPS. (Average of {2} persons per document)".format( size, len(data), size/len(data) ))
 	root = etree.Element('teiCorpus')
 
 	for document in data:
@@ -72,7 +89,7 @@ def convert(data):
 		text.attrib["text_ID"] = str(document)
 
 		for line in data[document]:
-			print "line", line
+			log.warn("Processing document {0}, ".format(str(line[0])))
 
 			day, month, year = line[1], line[2], line[3]
 			
@@ -100,17 +117,25 @@ def convert(data):
 				tag = etree.SubElement(div, "feature" )
 				tag.attrib[str(key)] = str(value)
 
-
+	log.warn("Ok, conversion complete.")
 	return etree.tostring(root, pretty_print=True)
 	
 
 if __name__ == "__main__": 
-	data = ingest(args.input)
-	s = convert(data)
+	log.info("Welcome to CSV to TEI4BPS conversion tool.")
+	data, size, input_file = ingest(args.input)
+	start = time.time()
+	s = convert(data, size)
+	end = time.time()
 
 	if args.output:
-		s.write(args.output)
+		log.info("Writing to {0}".format(args.output))
+		with open(args.output, "w+") as text_file:
+		    text_file.write(s)
 	else:
 		print s
+
+	log.info("Conversion took {0} seconds.".format(end-start))
+	log.info("Bye!")
 
 
