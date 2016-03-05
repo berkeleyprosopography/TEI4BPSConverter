@@ -10,15 +10,16 @@ The schema, as exemplified in the example corpus, calls for the following fields
 | Attribute     | Type          | Example  |
 | ------------- |-------------| -----|
 | Text_ID       | string		| P.Mich. V 238 I 10 |
-| Day		    | int 	        |   12 |
-| Month 		| int      		|    1 |
-| Year	        | int 			| 44 |
+| Date		    | date 	        |   12 feb 46 BC |
 | Activity      | string      |   Land sale |
+| Activity_sequence      | int      |   2 |
 | Activity_attribute | taglist |    Object:Land &#124; LandType:Fruit garden |
 | Role      | string | Lessor|
+| Role_attribute      | taglist | ?|
 | Person_name      | string      |   Harmaeis |
+| Person_sequence      | int      |   2 |
 | Person_attribute | taglist      |    NameType:Greek &#124; Gender:Male |
-			
+| Person_relation | taglist      |    Mother:5 &#124; Father:Ano-Uballit |
 
 ### Taglists
 
