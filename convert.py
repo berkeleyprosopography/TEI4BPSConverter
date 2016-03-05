@@ -45,12 +45,14 @@ class Field(Enum):
     Text_ID           	= 0
     Date     			= 1
     Activity            = 2
-    Activity_attribute  = 3
-    Role             	= 4
-    Role_attribute      = 5
-    Person_name         = 6
-    Person_attribute    = 7
-    Relation			= 8
+    Activity_sequence	= 3
+    Activity_attribute  = 4
+    Role             	= 5
+    Role_attribute      = 6
+    Person_name         = 7
+    Person_sequence		= 8
+    Person_attribute    = 9
+    Person_relation		= 10
 
 
 def parse_date(input_date):
@@ -80,6 +82,14 @@ def clean_ascii(text):
             )) 
 
 
+def get_header(anchor): 
+	header = etree.SubElement(anchor, "teiHeader")
+	fdesc = etree.SubElement(header, "fileDesc")
+	title = etree.SubElement(fdesc, "titleStmt")
+	pub = etree.SubElement(fdesc, "publicationStmt")
+	sdesc = etree.SubElement(fdesc, "sourceDesc")
+	p_sdesc = etree.SubElement(sdesc, "p")
+
 def ingest(file):
 	log.warn("Loading {0}".format(str(file)))
 	f = open(file, 'r')
@@ -98,12 +108,15 @@ def ingest(file):
 def convert(data, size):	
 	log.warn("Now converting {0} rows in {1} documents to TEI4BPS. (Average of {2} rows per document)".format( size, len(data), size/len(data) ))
 	root = etree.Element('teiCorpus')
-
+	get_header(root)
+	
 	# This loop iterates over the documents in the Defaultdict
 	for document in data:
 		# Header goes here
 
 		tei = etree.SubElement(root, 'TEI')
+		get_header(tei)
+
 		text = etree.SubElement(tei, "text")
 		text.attrib["text_ID"] = str(document)
 
@@ -122,7 +135,6 @@ def convert(data, size):
 
 		# Traverse the activities list
 		for uid, activity in enumerate(activities):
-			text.attrib["full_date"] = activity
 
 			data_entry = activities[activity][uid]
 		
@@ -131,29 +143,39 @@ def convert(data, size):
 			div = etree.SubElement(body, "div" )
 			div.attrib["type"] = "activity"
 			div.attrib["subtype"] = str(data_entry[Field.Activity])
-			
+			div.attrib["full_date"] = activity
+
 			# Add attributes
 			for key, value in parse_tags(str(data_entry[Field.Activity_attribute])).iteritems():
-				tag = etree.SubElement(div, "feature" )
-				tag.attrib[str(key)] = str(value)
+				tag = etree.SubElement(div, "state" )
+				tag.attrib["type"] = str(key)
+				tag.text = str(value)
 
 			# Add persons
 			perslist = etree.SubElement(div, 'p')
-
-
-			print activities[activity]
+			perslist.attrib["type"] = "persons_list"
 
 			for person in activities[activity]:
-				print "CONSIDERING PERSON", person
 				pers_name = etree.SubElement(perslist, "persName")
 				pers_name.attrib['role'] = str(person[Field.Role])
+				pers_name.attrib['uid'] = str(person[Field.Person_sequence])
 
-				pers_forename = etree.SubElement(pers_name, "forename")
-				pers_forename.text = clean_ascii(person[Field.Person_name])
+				if person[Field.Person_name]:
+					pers_forename = etree.SubElement(pers_name, "forename")
+					pers_forename.text = clean_ascii(person[Field.Person_name])
 
 				for key, value in parse_tags(str(person[Field.Person_attribute])).iteritems():
-					tag = etree.SubElement(pers_name, "feature" )
-					tag.attrib[str(key)] = str(value)
+					tag = etree.SubElement(pers_name, "state" )
+					tag.attrib["type"] = str(key)
+					tag.text = str(value)
+
+				if person[Field.Person_relation]:
+					for key, value in parse_tags(str(person[Field.Person_relation])).iteritems():
+						tag = etree.SubElement(pers_name, "state" )
+						tag.attrib["type"] = str(key)
+						tag.text = str(value)
+
+
 
 	log.warn("Ok, conversion complete.")
 	return etree.tostring(root, pretty_print=True)

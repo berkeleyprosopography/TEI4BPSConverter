@@ -1,14 +1,18 @@
-Text_ID,Date,Activity,Activity_attribute,Role,Role_attribute,Person_name,Person_attribute,Relation
-P.Mich. V 238  V 222,9/12/44 BC,Contract,Object:Barley | Money:24dr,Receiver,,Herodion,NameType:Greek | Gender:Male,
-P.Mich. V 238 I 10,2 Sept. 46 BC,Lease,Object:Land | LandType:Fruit garden,Lessor,,Galates,NameType:Greek | Gender:Male,
-P.Mich. V 238 I 10,2 Sept. 46 BC,Lease,Object:Land | LandType:Fruit garden,Lessee,,Tesenouphis,NameType:Egyptian | Gender:Male,
-P.Mich. V 238 I 10,2 Sept. 46 BC,Lease,Object:Land | LandType:Fruit garden,Lessee,,,Gender:Female,Wife:Tesenouphis
-P.Mich. V 238 I 11,27 Sept. 46,Lease,Object:Land,Lessee,,Galates,NameType:Greek | Gender:Male,
-P.Mich. V 238 I 11,2 Sept. 46,Lease,Object:Land | LandType:Auroras,Lessor,,Harmaeis,NameType:Egyptian | Gender:Male,
-P.Mich. V 238 I 11,2 Sept. 46,Lease,Object:Land | LandType:Auroras,Lessor,,,,Mother:Harmaeis
-P.Mich. V 238 I 11,2 Sept. 46,Lease,Object:Land | LandType:Auroras,Lessee,,Paaus,NameType:Egyptian | Gender:Male,
-"P.Mich. V 238 I 12 = 240, 69",2 Sept. 46,Offer of residence,Money:200dr,Creditor,,Nestesis,NameType:Egyptian,
-"P.Mich. V 238 I 12 = 240, 69",2 Sept. 46,Offer of residence,Money:200dr,Debtor,,Thaubastis,NameType:Egyptian | Gender:Female,
-"P.Mich. V 238 I 13= 240 , 69",2 Sept. 46,Loan,Money:200dr,Creditor,,Nestesis,NameType:Egyptian ,
-"P.Mich. V 238 I 13= 240 , 69",2 Sept. 46,Loan,Money:200dr,Debtor,,Thaubastis,NameType:Egyptian | Gender:Female,
-P.Mich. V 238 I 14 = 128 III 36 = 240 55,4 Sept. 46,Lease,Object:Land | LandType:Fodder_Land,Lessee,,Didumos,NameType:Greek | Gender:Male,
+Text_ID,Date,Activity,Activity_sequence,Activity_attribute,Role,Role_attribute,Person_name,Person_sequence,Person_attribute,Relation
+P.Mich. V 238  V 222,9/12/44 BC,Contract,,Object:Barley | Money:24dr,Receiver,,Herodion,0,NameType:Greek | Gender:Male,
+P.Mich. V 238 I 10,2 Sept. 46 BC,Lease,,Object:Land | LandType:Fruit garden,Lessor,,Galates,1,NameType:Greek | Gender:Male,
+P.Mich. V 238 I 10,2 Sept. 46 BC,Lease,,Object:Land | LandType:Fruit garden,Lessee,,Tesenouphis,2,NameType:Egyptian | Gender:Male,
+P.Mich. V 238 I 10,2 Sept. 46 BC,Lease,,Object:Land | LandType:Fruit garden,Lessee,,,3,Gender:Female,Wife:Tesenouphis
+P.Mich. V 238 I 11,27 Sept. 46,Lease,,Object:Land,Lessee,,Galates,4,NameType:Greek | Gender:Male,
+P.Mich. V 238 I 11,2 Sept. 46,Lease,,Object:Land | LandType:Auroras,Lessor,,Harmaeis,5,NameType:Egyptian | Gender:Male,
+P.Mich. V 238 I 11,2 Sept. 46,Lease,,Object:Land | LandType:Auroras,Lessor,,,6,,Mother:Harmaeis | Wife:7
+P.Mich. V 238 I 11,2 Sept. 46,Lease,,Object:Land | LandType:Auroras,Lessee,,Paaus,7,NameType:Egyptian | Gender:Male,
+"P.Mich. V 238 I 12 = 240, 69",2 Sept. 46,Offer of residence,,Money:200dr,Creditor,,Nestesis,8,NameType:Egyptian | Profession:CEO,
+"P.Mich. V 238 I 12 = 240, 69",2 Sept. 46,Offer of residence,,Money:200dr,Debtor,,Thaubastis,9,NameType:Egyptian | Gender:Female,
+"P.Mich. V 238 I 13= 240 , 69",2 Sept. 46,Loan,,Money:200dr,Creditor,,Nestesis,10,NameType:Egyptian ,
+"P.Mich. V 238 I 13= 240 , 69",2 Sept. 46,Loan,,Money:200dr,Debtor,,Thaubastis,11,NameType:Egyptian | Gender:Female,
+P.Mich. V 238 I 14 = 128 III 36 = 240 55,4 Sept. 46,Lease,,Object:Land | LandType:Fodder_Land,Lessee,,Didumos,12,NameType:Greek | Gender:Male,
+GONDOLA,2 Sept. 46 BC,Lease,1,Object:Land | LandType:Fruit garden,Lessor,,Galates,13,NameType:Greek | Gender:Male,
+GONDOLA,2 Sept. 46 BC,Lease,2,Object:Land | LandType:Fruit garden,Lessor,,Tesenouphis,14,NameType:Egyptian | Gender:Male,
+GONDOLA,2 Sept. 46 BC,Lease,2,Object:Land | LandType:Fruit garden,Lessee,,,15,Gender:Female,Wife:Tesenouphis
+GONDOLA,2 Sept. 46 BC,Lease,2,,,,,16,Gender:Female,Wife:Tesenouphis
