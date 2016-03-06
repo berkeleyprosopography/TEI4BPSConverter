@@ -135,7 +135,7 @@ def convert(data, size):
 
 		# Traverse the activities list
 		for uid, activity in enumerate(activities):
-
+			print uid, activity
 			data_entry = activities[activity][uid]
 		
 			body = etree.SubElement(text, "body")
