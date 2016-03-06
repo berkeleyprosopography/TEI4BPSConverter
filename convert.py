@@ -26,6 +26,8 @@ parser.add_argument('--output', '-o', default=None, type=str,
                     help="relative path of output file")
 parser.add_argument('--input', '-i', default=None, type=str,
                     help="relative path of input file")
+parser.add_argument('--params', '-p', default=None, type=str,
+                    help="relative path of input file")
 args = parser.parse_args()
 
 # Configure logging
@@ -90,10 +92,14 @@ def get_header(anchor):
 	sdesc = etree.SubElement(fdesc, "sourceDesc")
 	p_sdesc = etree.SubElement(sdesc, "p")
 
-def ingest(file):
+def ingest(file, params):
 	log.warn("Loading {0}".format(str(file)))
-	f = open(file, 'r')
-	c = csv.reader(f)
+	f = open(file, 'rU')
+	print params
+	if params=="excel":
+		c = csv.reader(f, dialect=csv.excel_tab)
+	else:
+		c = csv.reader(f)
 	data = defaultdict(list)
 
 	size =0
@@ -135,7 +141,7 @@ def convert(data, size):
 
 		# Traverse the activities list
 		for uid, activity in enumerate(activities):
-			print uid, activity
+
 			data_entry = activities[activity][uid]
 		
 			body = etree.SubElement(text, "body")
@@ -184,7 +190,7 @@ def convert(data, size):
 
 if __name__ == "__main__": 
 	log.info("Welcome to CSV to TEI4BPS conversion tool.")
-	data, size, input_file = ingest(args.input)
+	data, size, input_file = ingest(args.input, args.params)
 	start = time.time()
 	s = convert(data, size)
 	end = time.time()
