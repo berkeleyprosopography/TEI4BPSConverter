@@ -93,9 +93,9 @@ def get_header(anchor):
 	p_sdesc = etree.SubElement(sdesc, "p")
 
 def ingest(file, params):
-	log.warn("Loading {0}".format(str(file)))
+	log.warn("Loading {0} with {1} parameters {2}".format(str(file), len(params), params ))
 	f = open(file, 'rU')
-	print params
+	
 	if params=="excel":
 		c = csv.reader(f, dialect=csv.excel_tab)
 	else:
@@ -119,7 +119,7 @@ def convert(data, size):
 	# This loop iterates over the documents in the Defaultdict
 	for document in data:
 		# Header goes here
-
+		log.error("Loaded document: {0}".format(str(document)))
 		tei = etree.SubElement(root, 'TEI')
 		get_header(tei)
 
@@ -130,6 +130,7 @@ def convert(data, size):
 		# Find all activities inside a document
 		activities = defaultdict(list)
 		for line in data[document]:
+			log.error("Loaded line: {0}".format(str(line)))
 			date = parse_date(line[Field.Date])
 			try:
 				activities[str(date)].append(line)
