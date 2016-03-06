@@ -109,7 +109,7 @@ def convert(data, size):
 	log.warn("Now converting {0} rows in {1} documents to TEI4BPS. (Average of {2} rows per document)".format( size, len(data), size/len(data) ))
 	root = etree.Element('teiCorpus')
 	get_header(root)
-	
+
 	# This loop iterates over the documents in the Defaultdict
 	for document in data:
 		# Header goes here
@@ -169,6 +169,7 @@ def convert(data, size):
 					tag.attrib["type"] = str(key)
 					tag.text = str(value)
 
+				# This is the content of the "relation" feature
 				if person[Field.Person_relation]:
 					for key, value in parse_tags(str(person[Field.Person_relation])).iteritems():
 						tag = etree.SubElement(pers_name, "state" )
