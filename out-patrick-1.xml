@@ -1,0 +1,205 @@
+<teiCorpus>
+  <teiHeader>
+    <fileDesc>
+      <titleStmt/>
+      <publicationStmt/>
+      <sourceDesc>
+        <p/>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <TEI>
+    <teiHeader>
+      <fileDesc>
+        <titleStmt/>
+        <publicationStmt/>
+        <sourceDesc>
+          <p/>
+        </sourceDesc>
+      </fileDesc>
+    </teiHeader>
+    <text text_ID="Text_ID">
+      <body>
+        <div type="activity" subtype="Activity" full_date=" [UNPARSED: Date]">
+          <p type="persons_list">
+            <persName role="Role" uid="Person_sequence">
+              <forename>Person_name</forename>
+            </persName>
+          </p>
+        </div>
+      </body>
+    </text>
+  </TEI>
+  <TEI>
+    <teiHeader>
+      <fileDesc>
+        <titleStmt/>
+        <publicationStmt/>
+        <sourceDesc>
+          <p/>
+        </sourceDesc>
+      </fileDesc>
+    </teiHeader>
+    <text text_ID="text2">
+      <body>
+        <div type="activity" subtype="Sale" full_date="2016-01-05">
+          <state type="Object">land</state>
+          <p type="persons_list">
+            <persName role="seller" uid="12">
+              <forename>Joe</forename>
+              <state type="Gender">Male</state>
+              <state type="son">13</state>
+            </persName>
+            <persName role="" uid="13">
+              <forename>Bob</forename>
+              <state type="Gender">Male</state>
+              <state type="father">12</state>
+            </persName>
+            <persName role="" uid="">
+              <forename>Smith</forename>
+            </persName>
+            <persName role="buyer" uid="14">
+              <forename>Fred</forename>
+              <state type="Gender">Male</state>
+              <state type="son">15</state>
+            </persName>
+            <persName role="" uid="15">
+              <forename>Bob</forename>
+              <state type="Gender">Male</state>
+              <state type="father">14</state>
+            </persName>
+            <persName role="" uid="">
+              <forename>Jones</forename>
+            </persName>
+            <persName role="witness" uid="16">
+              <forename>John</forename>
+              <state type="Gender">Male</state>
+              <state type="brother">18</state>
+              <state type="son">17</state>
+            </persName>
+            <persName role="" uid="17">
+              <forename>Harry</forename>
+              <state type="Gender">Male</state>
+              <state type="father">16</state>
+            </persName>
+            <persName role="" uid="">
+              <forename>Taylor</forename>
+            </persName>
+            <persName role="witness" uid="18">
+              <forename>Steve</forename>
+              <state type="Gender">Male</state>
+              <state type="brother">14</state>
+              <state type="son">19</state>
+            </persName>
+            <persName role="" uid="19">
+              <forename>Harry</forename>
+              <state type="Gender">Male</state>
+              <state type="father">18</state>
+            </persName>
+            <persName role="" uid="">
+              <forename>Taylor</forename>
+            </persName>
+            <persName role="scribe" uid="20">
+              <forename>Don</forename>
+              <state type="Gender">Male</state>
+              <state type="son">21</state>
+            </persName>
+            <persName role="" uid="21">
+              <forename>Bill</forename>
+              <state type="Gender">Male</state>
+              <state type="father">20</state>
+            </persName>
+          </p>
+        </div>
+      </body>
+    </text>
+  </TEI>
+  <TEI>
+    <teiHeader>
+      <fileDesc>
+        <titleStmt/>
+        <publicationStmt/>
+        <sourceDesc>
+          <p/>
+        </sourceDesc>
+      </fileDesc>
+    </teiHeader>
+    <text text_ID="text1">
+      <body>
+        <div type="activity" subtype="Sale" full_date="2016-04-28">
+          <state type="Object">house</state>
+          <p type="persons_list">
+            <persName role="seller" uid="1">
+              <forename>Joe</forename>
+              <state type="Gender">Male</state>
+              <state type="brother">7</state>
+              <state type="Son">2</state>
+            </persName>
+            <persName role="" uid="2">
+              <forename>Bob</forename>
+              <state type="Gender">Male</state>
+              <state type="father">1</state>
+            </persName>
+            <persName role="" uid="">
+              <forename>Smith</forename>
+            </persName>
+            <persName role="buyer" uid="3">
+              <forename>Fred</forename>
+              <state type="Gender">Male</state>
+              <state type="Son">4</state>
+            </persName>
+            <persName role="" uid="4">
+              <forename>Bob</forename>
+              <state type="Gender">Male</state>
+              <state type="father">3</state>
+            </persName>
+            <persName role="" uid="">
+              <forename>Jones</forename>
+            </persName>
+            <persName role="witness" uid="5">
+              <forename>Jim</forename>
+              <state type="Gender">Male</state>
+              <state type="brother">1</state>
+              <state type="son">6</state>
+            </persName>
+            <persName role="" uid="6">
+              <forename>Bob</forename>
+              <state type="Gender">Male</state>
+              <state type="father">5</state>
+            </persName>
+            <persName role="" uid="">
+              <forename>Smith</forename>
+            </persName>
+            <persName role="witness" uid="7">
+              <forename>Fred</forename>
+              <state type="Gender">Male</state>
+              <state type="son">8</state>
+            </persName>
+            <persName role="" uid="8">
+              <forename>Bob</forename>
+              <state type="Gender">Male</state>
+              <state type="father">7</state>
+            </persName>
+            <persName role="witness" uid="9">
+              <forename>Fred</forename>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="scribe" uid="10">
+              <forename>Don</forename>
+              <state type="Gender">Male</state>
+              <state type="son">11</state>
+            </persName>
+            <persName role="" uid="11">
+              <forename>Bill</forename>
+              <state type="Gender">Male</state>
+              <state type="father">10</state>
+            </persName>
+            <persName role="" uid="">
+              <forename>Jones</forename>
+            </persName>
+          </p>
+        </div>
+      </body>
+    </text>
+  </TEI>
+</teiCorpus>

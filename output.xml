@@ -1,0 +1,828 @@
+<teiCorpus>
+  <teiHeader>
+    <fileDesc>
+      <titleStmt/>
+      <publicationStmt/>
+      <sourceDesc>
+        <p/>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <TEI>
+    <teiHeader>
+      <fileDesc>
+        <titleStmt/>
+        <publicationStmt/>
+        <sourceDesc>
+          <p/>
+        </sourceDesc>
+      </fileDesc>
+    </teiHeader>
+    <text text_ID="Text_ID">
+      <body>
+        <div type="activity" subtype="Activity" full_date=" [UNPARSED: Date]">
+          <p type="persons_list">
+            <persName role="Role" uid="Person_sequence">
+              <forename>Person_name</forename>
+            </persName>
+          </p>
+        </div>
+      </body>
+    </text>
+  </TEI>
+  <TEI>
+    <teiHeader>
+      <fileDesc>
+        <titleStmt/>
+        <publicationStmt/>
+        <sourceDesc>
+          <p/>
+        </sourceDesc>
+      </fileDesc>
+    </teiHeader>
+    <text text_ID="BM 46542">
+      <body>
+        <div type="activity" subtype="Sale" full_date=" [UNPARSED: 11 Dec. 711]">
+          <state type="Object">land</state>
+          <p type="persons_list">
+            <persName role="place name" uid="50">
+              <forename>Iqbi-Ura_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="place name" uid="51">
+              <forename>Kidinnu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="neighbor" uid="52">
+              <forename>N__iru</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="53">
+              <forename>Nab?-a_a-_re_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="neighbor" uid="54">
+              <forename>B_l-uballi_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="55">
+              <forename>Rab?ssu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="buyer" uid="56">
+              <forename>L?b?_i</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="57">
+              <forename>N_dinu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="seller" uid="58">
+              <forename>Nab?-u_ab_i</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="seller" uid="59">
+              <forename>_ama_-iddin</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="60">
+              <forename>A___a</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="house" uid="61">
+              <forename>[?]-_re_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="62">
+              <forename>B_l-__ir</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="63">
+              <forename>_ang?-Dilbat</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="64">
+              <forename>B_l-r_manni</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="65">
+              <forename>Epp__-ili</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="66">
+              <forename>R_m_tu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="67">
+              <forename>_ang?-Dilbat</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="68">
+              <forename>E__ru</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="69">
+              <forename>_ang?-Dilbat</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="70">
+              <forename>Nab?-u_allim</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="71">
+              <forename>B_'iru</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="72">
+              <forename>Marduk-n__ir</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="73">
+              <forename>S?n-imitt_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="scribe" uid="74">
+              <forename>Nab?-kudurr_-u_ur</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="75">
+              <forename>_ang?-Dilbat</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+          </p>
+        </div>
+      </body>
+    </text>
+  </TEI>
+  <TEI>
+    <teiHeader>
+      <fileDesc>
+        <titleStmt/>
+        <publicationStmt/>
+        <sourceDesc>
+          <p/>
+        </sourceDesc>
+      </fileDesc>
+    </teiHeader>
+    <text text_ID="BM 134970">
+      <body>
+        <div type="activity" subtype="Sale" full_date=" [UNPARSED: 11 Dec. 711]">
+          <state type="Object">land</state>
+          <p type="persons_list">
+            <persName role="place name" uid="8">
+              <forename>_a-p?-B_l</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="place name" uid="9">
+              <forename> Iqbi-Ura_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="neighbor" uid="10">
+              <forename>Iqbi-[?]</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="11">
+              <forename>Kidin-[?]</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="neighbor" uid="12">
+              <forename>L_gam_l-__ir</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="13">
+              <forename>Dip_ru</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="neighbor" uid="14">
+              <forename>Nab?-a_a-iddin</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="15">
+              <forename>_a-p?-Ura_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="neighbor" uid="16">
+              <forename>_arr_ni</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="buyer" uid="17">
+              <forename>_arr_ni</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="buyer" uid="18">
+              <forename>N_dinu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="19">
+              <forename>Am_l-Nan_ya</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="seller" uid="20">
+              <forename>_a-p?-Nab?</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="21">
+              <forename>A_ab_u</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="22">
+              <forename>Ura_-udammiq</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="23">
+              <forename>Kidin-Ura_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="24">
+              <forename>B_l-a___-er_ba</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="25">
+              <forename>A_ab_u</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="26">
+              <forename>B_l-l_'i</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="27">
+              <forename>Ir?nni</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="28">
+              <forename>Er_ba</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="29">
+              <forename>_ang?-Dilbat</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+          </p>
+        </div>
+      </body>
+    </text>
+  </TEI>
+  <TEI>
+    <teiHeader>
+      <fileDesc>
+        <titleStmt/>
+        <publicationStmt/>
+        <sourceDesc>
+          <p/>
+        </sourceDesc>
+      </fileDesc>
+    </teiHeader>
+    <text text_ID="BM 134973">
+      <body>
+        <div type="activity" subtype="Loan" full_date=" [UNPARSED: 11 Dec. 711]">
+          <state type="Object">silver</state>
+          <p type="persons_list">
+            <persName role="lender" uid="102">
+              <forename>L?b?_i</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="103">
+              <forename>N_dinu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="borrower" uid="104">
+              <forename>Qarr_d-ili</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="borrower" uid="105">
+              <forename>Ura_-ibni</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="106">
+              <forename>Qarr_d-ili</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="107">
+              <forename>Re__ya</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="neighbor" uid="108">
+              <forename>Ka[?]</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="109">
+              <forename>Nab?-u_allim</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="110">
+              <forename>A___tu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="111">
+              <forename>R_m_tu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="112">
+              <forename>Ibn_ya</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="113">
+              <forename>Kun_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="114">
+              <forename>Ea-dip_r-il_ni</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="115">
+              <forename>B_l-a___-er_ba</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="116">
+              <forename>L?b?_i-il_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="scribe" uid="117">
+              <forename>B_l-a_a-iddin</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="118">
+              <forename>Q_pu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+          </p>
+        </div>
+      </body>
+    </text>
+  </TEI>
+  <TEI>
+    <teiHeader>
+      <fileDesc>
+        <titleStmt/>
+        <publicationStmt/>
+        <sourceDesc>
+          <p/>
+        </sourceDesc>
+      </fileDesc>
+    </teiHeader>
+    <text text_ID="MLC 1786">
+      <body>
+        <div type="activity" subtype="Loan" full_date=" [UNPARSED: 11 Dec. 711]">
+          <state type="Object">barley</state>
+          <p type="persons_list">
+            <persName role="lender" uid="0">
+              <forename>N_dinu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="1">
+              <forename>Am_l-Nan_ya</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="borrower" uid="2">
+              <forename>Etelletu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="3">
+              <forename>L_gam_l-__ir</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="4">
+              <forename>Ind__u</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="5">
+              <forename>B_l-useppi</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="scribe" uid="6">
+              <forename>Pu__uru</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="7">
+              <forename>Nab?-l_'i</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+          </p>
+        </div>
+      </body>
+    </text>
+  </TEI>
+  <TEI>
+    <teiHeader>
+      <fileDesc>
+        <titleStmt/>
+        <publicationStmt/>
+        <sourceDesc>
+          <p/>
+        </sourceDesc>
+      </fileDesc>
+    </teiHeader>
+    <text text_ID="BM 134969">
+      <body>
+        <div type="activity" subtype="Loan" full_date=" [UNPARSED: 11 Dec. 711]">
+          <state type="Object">land</state>
+          <p type="persons_list">
+            <persName role="lender" uid="119">
+              <forename>L?b?_i</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="120">
+              <forename>N_dinu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="neighbor" uid="121">
+              <forename>Imb_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="122">
+              <forename>Kin_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="borrower" uid="123">
+              <forename>Bal_ssu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="124">
+              <forename>Nab?-a___-bulli_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="125">
+              <forename>B_l-z_ri</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="126">
+              <forename>_ang?-Dilbat</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="127">
+              <forename>Gula-z_ra-ibni</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="128">
+              <forename>Ninurta-a_a-iddin</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="scribe" uid="129">
+              <forename>Nab?-n_din-a_i</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="130">
+              <forename>B_l-e__ru</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+          </p>
+        </div>
+      </body>
+    </text>
+  </TEI>
+  <TEI>
+    <teiHeader>
+      <fileDesc>
+        <titleStmt/>
+        <publicationStmt/>
+        <sourceDesc>
+          <p/>
+        </sourceDesc>
+      </fileDesc>
+    </teiHeader>
+    <text text_ID="MLC 1739">
+      <body>
+        <div type="activity" subtype="Sale" full_date=" [UNPARSED: 11 Dec. 711]">
+          <state type="Object">land</state>
+          <p type="persons_list">
+            <persName role="place name" uid="76">
+              <forename>Iqbi-Ura_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="place name" uid="77">
+              <forename>R_'?-alp_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="buyer" uid="78">
+              <forename>L?b?_i</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="neighbor" uid="79">
+              <forename>L?b?_i</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="80">
+              <forename>N_dinu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="neighbor" uid="81">
+              <forename>Ura_-u_allim</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="82">
+              <forename>Nab?-er_ba</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="place name" uid="83">
+              <forename>Iqbi-Ura_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="place name" uid="84">
+              <forename>Kidinnu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="seller" uid="85">
+              <forename>Nab?-k__ir</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="seller" uid="86">
+              <forename>Ura_-n__ir</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="87">
+              <forename>B_l-upa__ir</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="88">
+              <forename>B_l-upa__ir</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="house" uid="89">
+              <forename>Rab?ssu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="90">
+              <forename>Nab?-a___-bulli_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="91">
+              <forename>_ang?-Dilbat</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="92">
+              <forename>R_m_tu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="93">
+              <forename>_ul_a</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="94">
+              <forename>Nab?-z_ra-uk_n</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="95">
+              <forename>Nab?-_uma-iddin</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="96">
+              <forename>Kin_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="97">
+              <forename>Ura_-iddin</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="98">
+              <forename>Ura_-iddin</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="99">
+              <forename>R_m_tu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="scribe" uid="100">
+              <forename>Nab?-n_din-a_i</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="101">
+              <forename>_ang?-Dilbat</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+          </p>
+        </div>
+      </body>
+    </text>
+  </TEI>
+  <TEI>
+    <teiHeader>
+      <fileDesc>
+        <titleStmt/>
+        <publicationStmt/>
+        <sourceDesc>
+          <p/>
+        </sourceDesc>
+      </fileDesc>
+    </teiHeader>
+    <text text_ID="PTS 2318">
+      <body>
+        <div type="activity" subtype="Dedication" full_date=" [UNPARSED: 11 Dec. 711]">
+          <state type="Object">child</state>
+          <p type="persons_list">
+            <persName role="buyer" uid="30">
+              <forename>L?b?_i</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="31">
+              <forename>N_dinu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="seller" uid="32">
+              <forename>_a-p?-ili</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="seller" uid="33">
+              <forename>Bin_tu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="seller" uid="34">
+              <forename>_a-_apirti</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="dedicant" uid="35">
+              <forename>Tardinnu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="36">
+              <forename>[?]-_pu_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="37">
+              <forename>Epp__-ili</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="38">
+              <forename>B_l-useppi</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="39">
+              <forename>Tem_ya</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="40">
+              <forename>B_l-iddin</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="41">
+              <forename>_ang?-Dilbat</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="42">
+              <forename>A_a-er_ba</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="43">
+              <forename>Kal_mu</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="44">
+              <forename>Nab?-z_ra-ibni</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="45">
+              <forename>Nab?-a_a-iddin</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="witness" uid="46">
+              <forename>Kudurru</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="47">
+              <forename>_ang?-Dilbat</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="scribe" uid="48">
+              <forename>Nab?-a___-bulli_</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+            <persName role="" uid="49">
+              <forename>Iddin-Papsukkal</forename>
+              <state type="NameType">Akkadian</state>
+              <state type="Gender">Male</state>
+            </persName>
+          </p>
+        </div>
+      </body>
+    </text>
+  </TEI>
+</teiCorpus>

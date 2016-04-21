@@ -1,0 +1,30 @@
+Text_ID,Date,Activity,Activity_sequence,Activity_attribute,Role,Role_attribute,Person_name,Person_sequence,Person_attribute,Relation
+text1,4/28/16,Sale,,Object:house,seller,,Joe,1,Gender:Male,Son:2 | brother:7
+text1,4/28/16,Sale,,Object:house,,,Bob,2,Gender:Male,father:1
+text1,4/28/16,Sale,,Object:house,,,Smith,,Clan,
+text1,4/28/16,Sale,,Object:house,buyer,,Fred,3,Gender:Male,Son:5
+text1,4/28/16,Sale,,Object:house,,,Bob,4,Gender:Male,father:4
+text1,4/28/16,Sale,,Object:house,,,Jones,,Clan,
+text1,4/28/16,Sale,,Object:house,witness,,Jim,5,Gender:Male,son:8 | brother:1
+text1,4/28/16,Sale,,Object:house,,,Bob,6,Gender:Male,father:7
+text1,4/28/16,Sale,,Object:house,,,Smith,,Clan,
+text1,4/28/16,Sale,,Object:house,witness,,Fred,7,Gender:Male,son:11
+text1,4/28/16,Sale,,Object:house,,,Bob,8,Gender:Male,father:10
+text1,4/28/16,Sale,,Object:house,witness,,Fred,9,Gender:Male,
+text1,4/28/16,Sale,,Object:house,scribe,,Don,10,Gender:Male,son:14
+text1,4/28/16,Sale,,Object:house,,,Bill,11,Gender:Male,father:13
+text1,4/28/16,Sale,,Object:house,,,Jones,,Clan,
+text2,5/1/16,Sale,,Object:land,seller,,Joe,12,Gender:Male,son:17
+text2,5/1/16,Sale,,Object:land,,,Bob,13,Gender:Male,father:16
+text2,5/1/16,Sale,,Object:land,,,Smith,,Clan,
+text2,5/1/16,Sale,,Object:land,,,Fred,14,Gender:Male,son:20
+text2,5/1/16,Sale,,Object:land,,,Bob,15,Gender:Male,father:19
+text2,5/1/16,Sale,,Object:land,,,Jones,,Clan,
+text2,5/1/16,Sale,,Object:land,witness,,John,16,Gender:Male,son:23 | brother:25
+text2,5/1/16,Sale,,Object:land,,,Harry,17,Gender:Male,father:22
+text2,5/1/16,Sale,,Object:land,,,Taylor,,Clan,
+text2,5/1/16,Sale,,Object:land,witness,,Steve,18,Gender:Male,son:26 | brother:22
+text2,5/1/16,Sale,,Object:land,,,Harry,19,Gender:Male,father:25
+text2,5/1/16,Sale,,Object:land,,,Taylor,,Clan,
+text2,5/1/16,Sale,,Object:land,scribe,,Don,20,Gender:Male,son:29
+text2,5/1/16,Sale,,Object:land,,,Bill,21,Gender:Male,father:28

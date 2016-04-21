@@ -139,12 +139,13 @@ def convert(data, size):
 				log.error('Error is: {0}'.format(str(e)))
 
 		log.warn("Found {0} activities in document {1}, ".format( len(activities), str(line[Field.Text_ID])))
-
+		print 'activs', activities
 		# Traverse the activities list
 		for uid, activity in enumerate(activities):
-
+			print 'uid', uid
+			print 'act', activity
 			data_entry = activities[activity][uid]
-		
+			print 'dentry', data_entry
 			body = etree.SubElement(text, "body")
 
 			div = etree.SubElement(body, "div" )
@@ -163,10 +164,12 @@ def convert(data, size):
 			perslist.attrib["type"] = "persons_list"
 
 			for person in activities[activity]:
+				print "posit person", person
 				pers_name = etree.SubElement(perslist, "persName")
 				pers_name.attrib['role'] = str(person[Field.Role])
 				pers_name.attrib['uid'] = str(person[Field.Person_sequence])
 
+				# Good until here
 				if person[Field.Person_name]:
 					pers_forename = etree.SubElement(pers_name, "forename")
 					pers_forename.text = clean_ascii(person[Field.Person_name])
