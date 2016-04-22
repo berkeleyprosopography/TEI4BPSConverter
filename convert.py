@@ -8,7 +8,7 @@ Berkeley Prosopography Services
 
 '''
 
-import os, csv
+import sys, os, csv
 from lxml import etree
 import argparse
 from curses import ascii
@@ -85,10 +85,16 @@ def clean_ascii(text):
             )) 
 
 
-def get_header(anchor): 
+def get_header(anchor, text_id = None): 
     header = etree.SubElement(anchor, "teiHeader")
     fdesc = etree.SubElement(header, "fileDesc")
     title = etree.SubElement(fdesc, "titleStmt")
+    if text_id:
+        title_node = etree.SubElement(title, "title")
+        name_node = etree.SubElement(title_node, "name")
+        name_node.attrib['type'] = "cdlicat:id_text"
+        name_node.text = text_id
+
     pub = etree.SubElement(fdesc, "publicationStmt")
     sdesc = etree.SubElement(fdesc, "sourceDesc")
     p_sdesc = etree.SubElement(sdesc, "p")
@@ -120,13 +126,13 @@ def convert(data, size):
     # This loop iterates over the documents in the Defaultdict
     for document in data:
         # Header goes here
-        log.error("Loaded document: {0}".format(str(document)))
+        log.error("Loaded document {0}: {1} entries".format(str(document), len(data[document])))
         tei = etree.SubElement(root, 'TEI')
-        get_header(tei)
+        get_header(tei, document)
 
         text = etree.SubElement(tei, "text")
         text.attrib["text_ID"] = str(document)
-
+        text.attrib["type"] = 'transliteration'
 
         # Find all activities inside a document
         activities = defaultdict(list)
@@ -142,10 +148,11 @@ def convert(data, size):
         log.warn("Found {0} activities in document {1}, ".format( len(activities), str(line[Field.Text_ID])))
 
         # Traverse the activities list (binned by date, one activity is a sub-list of the main table)
+        # This will become important once we allow multiple activities in a document
         for uid, activity in enumerate(activities):
 
             data_entry = activities[activity][uid]
-            print 'Processing person', data_entry[7]
+            #print 'LOOPING OVER ACTIVITY', uid,len(activities), activity, 
             body = etree.SubElement(text, "body")
 
             div = etree.SubElement(body, "div" )
@@ -172,7 +179,7 @@ def convert(data, size):
             # Here we iterate on every line of the activity 
             for linenum, line in enumerate(act):
                 print "\n"
-                print "*** Processing document {0} out of {1} ***".format(linenum, len(act))
+                print "*** Processing document {0} out of {1} ***".format(linenum +1, len(act))
                 print "--->", linenum, line, '|', uid, activity, '<---'
                 
                 # a convenient try-catch that makes debug easier. 
@@ -220,7 +227,7 @@ def convert(data, size):
                                             elem = etree.SubElement(pf, "state" )
                                             elem.attrib["type"] = str(ptag[0])
                                             elem.text = str(ptag[1])
-                                        print " A patronymic is its own forename"
+                                        print " (A patronymic is its own forename)"
                                         print " [DEBUG] Now pers_name looks like", etree.tostring(pers_name)
                                         pers_name.append(pf)
                                         print " CHECKPOINT -> Added", etree.tostring(pf)
@@ -235,48 +242,68 @@ def convert(data, size):
                                         print " CHECKPOINT -> Added", etree.tostring(pf)
                                         print " [DEBUG] Now pers_forename looks like", etree.tostring(pers_forename)
 
-                                    print "Done processing", person[8]
+                                    print "Processed all record information for", person[8]
 
                                     processed_relations.append(person[8])
                             else:
                                 print "Person_relation not found, skipping..."
                             
                             print "CHECKPOINT -> LOOKAHEAD to find unbound fliation information"
-
                         
                         
                         loop = True
-                        i = 0
+                        i = 1
                         bucket_list = []
-                        
-                        while loop:
-                            i +=1
+                        # construct bucket list
+                        while loop is True and ((i + linenum) < len(act)):
+                            #print "Lookahead config: loop {0}, linenum {1}, i {2}, i+linenum {3}, len(act)={4}".format(loop, linenum, i, i + linenum, len(act))
                             tags = parse_tags(act[linenum + i][10])
                             for tag in tags:
                                 tags[tag] = persons_by_sequence[int(tags[tag])][7]
-                            print "looking ahead {0} items. Found {1} ({2})".format(i, act[linenum + i][7], tags)
+                            print " Looking ahead {0} items. Found {1} ({2})".format(i, act[linenum + i][7], tags)
                             if act[linenum + i][5] != '':
-                                print "stop at", act[linenum + i][7], act[linenum + i][10]
+                                print " stop at", act[linenum + i][7], act[linenum + i][10]
                                 loop = False
                             else:
-                                print "hit at", act[linenum + i][7], act[linenum + i][10]
+                                print " It appears {0} ({1}) is part of this context.".format(act[linenum + i][7], act[linenum + i][10] or 'NO RELATION')
                                 bucket_list.append(act[linenum + i])
-                        
-                        print "bucket list", [x for x in bucket_list]
-                            
-                            
+                            i +=1
+
+                        # process bucket list
+                        print "BUCKET LIST LENGTH:", len(bucket_list)
                         for person in bucket_list:
+                            print "Sorting item {0} in bucket list".format(person)
+                            print " Does it have a name?"
                             if person[7]:
+                                print "  Yes, {0} looks like a person name. Did we already process it?"
                                 if person[8] not in processed_relations:
-                                    print '+++ UNBOUND', person[9], person[7]
-                                    
-                            
+                                    print '  No! We have an UNBOUND:', person[9], person[7]
+                                    # let's add it
+
+                                    if person[9].lower()=='clan':
+                                        print '   It is a CLAN!', person[7]
+                                        # adding clan
+                                        pf = etree.Element("addName")
+                                        pf.text = clean_ascii(person[Field.Person_name])
+                                        pf.attrib['type'] = "clan"
+
+                                        print " [DEBUG] Now pers_name looks like", etree.tostring(pers_name)
+                                        pers_name.append(pf)
+                                        print " CHECKPOINT -> Added", etree.tostring(pf)
+                                        print " [DEBUG] Now pers_forename looks like", etree.tostring(pers_name)
+                                    else:
+                                        print "ADDING THESE ITEMS IS CURRENTLY UNSUPPORTED"
+
+                                else:
+                                    print "   Yes we have. Moving on..."
+
                     else:
                         print "WARNING: not person at", line[9]
                 except Exception as e:
-                    print " ************ EXCEPT", str(e)
+                    exc_type, exc_obj, exc_tb = sys.exc_info()
+                    fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                    print " ************ EXCEPT:", str(e), exc_tb.tb_lineno, exc_type
                     pass
-
 
 
     log.warn("Ok, conversion complete.")
