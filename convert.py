@@ -149,8 +149,11 @@ def convert(data, size):
 
         # Traverse the activities list (binned by date, one activity is a sub-list of the main table)
         # This will become important once we allow multiple activities in a document
+        print activities
         for uid, activity in enumerate(activities):
-
+            print uid
+            print activity
+            print "* Processing activity {0}/{1} in document {2}".format(uid,len(activities), activity)
             data_entry = activities[activity][uid]
             #print 'LOOPING OVER ACTIVITY', uid,len(activities), activity, 
             body = etree.SubElement(text, "body")
@@ -178,15 +181,16 @@ def convert(data, size):
                 
             # Here we iterate on every line of the activity 
             for linenum, line in enumerate(act):
-                print "\n"
-                print "*** Processing document {0} out of {1} ***".format(linenum +1, len(act))
-                print "--->", linenum, line, '|', uid, activity, '<---'
+                #print "\n"
+                print "## Processing line {0} out of {1} *".format(linenum +1, len(act))
+                print "## --->", linenum, line, '|', uid, activity
                 
                 # a convenient try-catch that makes debug easier. 
                 try:
                     # First of all we check that we have a person with a role 
                     # and if so, we go ahead and create a node for it
                     if line[Field.Role]:
+                        print "### Found person {0} in role {1}".format(line[Field.Person_name] , line[Field.Role])
                         pers_name = etree.Element( "persName")
                         pers_name.attrib['role'] = str(line[Field.Role])
                         pers_name.attrib['uid'] = str(line[Field.Person_sequence])
@@ -202,23 +206,23 @@ def convert(data, size):
 
                             pers_name.append(pers_forename)
                             perslist.append(pers_name)
-                            print "OK Added new ", etree.tostring(pers_name)
+                            print "### OK Added new ", etree.tostring(pers_name)
 
                             processed_relations =[]
                             
                             if line[10]:
                                 tags = parse_tags(line[10])
-                                print "Resolving forenames in person_relation", tags
+                                print "$$$ Resolving forenames in person_relation", tags
                                 
                                 for tag in tags.items():
                                     # resolve person name
                                     person = persons_by_sequence[int(tag[1])]
-                                    print " Iterating over tag", tag,' ->', person[7]
+                                    print "$$$ Iterating over tag", tag,' ->', person[7]
 
-                                    print " is {0} a patronymic?".format(tag[0]), tag[0].lower() == "son"
+                                    print "$$$ is {0} a patronymic?".format(tag[0]), tag[0].lower() == "son"
                                     # check whether it's a patronymic
                                     if tag[0].lower() == "son":
-                                        
+                                        print "$$$ let's add it to the tree"
                                         pf = etree.Element("forename")
                                         pf.text = clean_ascii(person[Field.Person_name])
                                         pf.attrib['type'] = "patronymic"
@@ -227,28 +231,28 @@ def convert(data, size):
                                             elem = etree.SubElement(pf, "state" )
                                             elem.attrib["type"] = str(ptag[0])
                                             elem.text = str(ptag[1])
-                                        print " (A patronymic is its own forename)"
-                                        print " [DEBUG] Now pers_name looks like", etree.tostring(pers_name)
+                                        #print " (A patronymic is its own forename)"
+                                        print "$$$$  [DEBUG] Now pers_name looks like", etree.tostring(pers_name)
                                         pers_name.append(pf)
-                                        print " CHECKPOINT -> Added", etree.tostring(pf)
-                                        print " [DEBUG] Now pers_name looks like", etree.tostring(pers_name)
+                                        print "$$$$  CHECKPOINT -> Added", etree.tostring(pf)
+                                        print "$$$$  [DEBUG] Now pers_name looks like", etree.tostring(pers_name)
 
                                     else:
                                         pf = etree.Element("state")
                                         pf.attrib["type"] = str(tag[0])
                                         pf.text = str(tag[1])
-                                        print " [DEBUG] Now pers_forename looks like", etree.tostring(pers_forename)
+                                        print "$$$$  [DEBUG] Now pers_forename looks like", etree.tostring(pers_forename)
                                         pers_forename.append(pf)
-                                        print " CHECKPOINT -> Added", etree.tostring(pf)
-                                        print " [DEBUG] Now pers_forename looks like", etree.tostring(pers_forename)
+                                        print "$$$$ CHECKPOINT -> Added", etree.tostring(pf)
+                                        print "$$$$ [DEBUG] Now pers_forename looks like", etree.tostring(pers_forename)
 
-                                    print "Processed all record information for", person[8]
+                                    print "$$$ Processed all record information for", person[7]
 
                                     processed_relations.append(person[8])
                             else:
-                                print "Person_relation not found, skipping..."
+                                print "$$$ Person_relation not found, skipping..."
                             
-                            print "CHECKPOINT -> LOOKAHEAD to find unbound fliation information"
+                            print "### CHECKPOINT -> Now LOOKAHEAD to find unbound fliation information"
                         
                         
                         loop = True
@@ -256,57 +260,58 @@ def convert(data, size):
                         bucket_list = []
                         # construct bucket list
                         while loop is True and ((i + linenum) < len(act)):
-                            #print "Lookahead config: loop {0}, linenum {1}, i {2}, i+linenum {3}, len(act)={4}".format(loop, linenum, i, i + linenum, len(act))
+                            print "=== Lookahead config: loop {0}, linenum {1}, i {2}, i+linenum {3}, len(act)={4}".format(loop, linenum, i, i + linenum, len(act))
                             tags = parse_tags(act[linenum + i][10])
                             for tag in tags:
                                 tags[tag] = persons_by_sequence[int(tags[tag])][7]
-                            print " Looking ahead {0} items. Found {1} ({2})".format(i, act[linenum + i][7], tags)
+                            print "=== Looking ahead {0} items. Found {1} ({2})".format(i, act[linenum + i][7], tags)
                             if act[linenum + i][5] != '':
-                                print " stop at", act[linenum + i][7], act[linenum + i][10]
+                                print "=== stop at", act[linenum + i][7], act[linenum + i][10]
                                 loop = False
                             else:
-                                print " It appears {0} ({1}) is part of this context.".format(act[linenum + i][7], act[linenum + i][10] or 'NO RELATION')
+                                print "=== It appears {0} ({1}) is part of this context.".format(act[linenum + i][7], act[linenum + i][10] or 'NO RELATION')
                                 bucket_list.append(act[linenum + i])
                             i +=1
 
                         # process bucket list
                         print "BUCKET LIST LENGTH:", len(bucket_list)
                         for person in bucket_list:
-                            print "Sorting item {0} in bucket list".format(person)
-                            print " Does it have a name?"
+                            print "--- Sorting item {0} in bucket list".format(person)
+                            print "--- Does it have a name?"
                             if person[7]:
-                                print "  Yes, {0} looks like a person name. Did we already process it?"
+                                print "---  Yes, {0} looks like a person name. Did we already process it?"
                                 if person[8] not in processed_relations:
-                                    print '  No! We have an UNBOUND:', person[9], person[7]
+                                    print '---  No! We have an UNBOUND item:', person[9], person[7]
                                     # let's add it
 
                                     if person[9].lower()=='clan':
-                                        print '   It is a CLAN!', person[7]
+                                        print '---   It is a CLAN!', person[7]
                                         # adding clan
                                         pf = etree.Element("addName")
                                         pf.text = clean_ascii(person[Field.Person_name])
                                         pf.attrib['type'] = "clan"
 
-                                        print " [DEBUG] Now pers_name looks like", etree.tostring(pers_name)
+                                        print "--- [DEBUG] Now pers_name looks like", etree.tostring(pers_name)
                                         pers_name.append(pf)
-                                        print " CHECKPOINT -> Added", etree.tostring(pf)
-                                        print " [DEBUG] Now pers_forename looks like", etree.tostring(pers_name)
+                                        print "--- CHECKPOINT -> Added", etree.tostring(pf)
+                                        print "--- [DEBUG] Now pers_forename looks like", etree.tostring(pers_name)
                                     else:
-                                        print "ADDING THESE ITEMS IS CURRENTLY UNSUPPORTED"
+                                        print "--- [ERROR] Didn't recognize that tag"
+                                        print "--- Ask davide to add it to the supported tag list"
 
                                 else:
-                                    print "   Yes we have. Moving on..."
+                                    print "------   Yes we have. Moving on..."
 
                     else:
-                        print "WARNING: not person at", line[9]
+                        print "## WARNING: Person {0} does not have a role (got '{1}' instead) and will be skipped.".format(line[7],line[5], )
                 except Exception as e:
                     exc_type, exc_obj, exc_tb = sys.exc_info()
                     fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-                    print " ************ EXCEPT:", str(e), exc_tb.tb_lineno, exc_type
+                    print " ************ EXCEPTION, YOUR HONOR!:", str(e), exc_tb.tb_lineno, exc_type
                     pass
 
 
-    log.warn("Ok, conversion complete.")
+    log.warn("Ok, conversion complete!")
     return etree.tostring(root, pretty_print=True)
     
 
