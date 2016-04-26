@@ -148,13 +148,16 @@ def convert(data, size):
         log.warn("Found {0} activities in document {1}, ".format( len(activities), str(line[Field.Text_ID])))
 
         # Traverse the activities list (binned by date, one activity is a sub-list of the main table)
-        # This will become important once we allow multiple activities in a document
-        print activities
+        # (This will become important once we allow multiple activities in a document)
+        for uid, activity in enumerate(activities):
+            print activities[activity], uid
+
         for uid, activity in enumerate(activities):
             print uid
             print activity
             print "* Processing activity {0}/{1} in document {2}".format(uid,len(activities), activity)
             data_entry = activities[activity][uid]
+            #data_entry = activity
             #print 'LOOPING OVER ACTIVITY', uid,len(activities), activity, 
             body = etree.SubElement(text, "body")
 
@@ -279,7 +282,7 @@ def convert(data, size):
                             print "--- Sorting item {0} in bucket list".format(person)
                             print "--- Does it have a name?"
                             if person[7]:
-                                print "---  Yes, {0} looks like a person name. Did we already process it?"
+                                print "---  Yes, {0} looks like a person name. Did we already process it?".format(person[7])
                                 if person[8] not in processed_relations:
                                     print '---  No! We have an UNBOUND item:', person[9], person[7]
                                     # let's add it
