@@ -8,7 +8,7 @@ Berkeley Prosopography Services
 
 '''
 
-import sys, os, csv
+import sys, os, csv, codecs
 from lxml import etree
 import argparse
 from curses import ascii
@@ -80,10 +80,12 @@ def parse_tags(input_string):
 
 
 def clean_ascii(text):
-    return str(''.join(
-            ascii.isprint(c) and c or '?' for c in text
+    print "->>>>>> CLEAN ASCII ->>>>", text
+    return text
+'''    return str(u''.join(
+            ascii.isprint(c) and c or codecs.encode(c, "utf-8") for c in text
             )) 
-
+'''
 
 def get_header(anchor, text_id = None): 
     header = etree.SubElement(anchor, "teiHeader")
@@ -100,11 +102,25 @@ def get_header(anchor, text_id = None):
     p_sdesc = etree.SubElement(sdesc, "p")
 
 def ingest(file, params):
+
+    def csv_unireader(f, encoding="utf-8"):
+        for row in csv.reader(codecs.iterencode(codecs.iterdecode(f, encoding), "utf-8")):
+            try:
+                print "considering ->>>", row
+                a = [e.decode("utf-8") for e in row]
+                print a 
+                yield a
+            except Exception as e:
+                print e
+                break
+
     log.warn("Loading {0} with {1} parameters {2}".format(str(file), len(params), params ))
     f = open(file, 'rU')
     
     if params=="excel":
         c = csv.reader(f, dialect=csv.excel_tab)
+    elif params=="utf":
+        c = csv_unireader(f)
     else:
         c = csv.reader(f)
 
@@ -201,8 +217,7 @@ def convert(data, size):
 
                         if line[Field.Person_sequence]:
                             pers_forename = etree.SubElement(pers_name, "forename")
-                            pers_forename.text = clean_ascii(line[Field.Person_name])
-                            
+                            pers_forename.text = codecs.decode(line[Field.Person_name], "utf-8")
                             for tag in parse_tags(line[Field.Person_attribute]).items():
                                 elem = etree.SubElement(pers_forename, "state" )
                                 elem.attrib["type"] = str(tag[0])
@@ -316,7 +331,7 @@ def convert(data, size):
 
 
     log.warn("Ok, conversion complete!")
-    return etree.tostring(root, pretty_print=True)
+    return etree.tostring(root, pretty_print=True, encoding="utf-8")
     
 
 if __name__ == "__main__": 
@@ -328,7 +343,7 @@ if __name__ == "__main__":
 
     if args.output:
         log.info("Writing to {0}".format(args.output))
-        with open(args.output, "w+") as text_file:
+        with open(args.output, "w+", ) as text_file:
             text_file.write(s)
     else:
         print s
