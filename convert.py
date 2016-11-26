@@ -13,7 +13,7 @@ from lxml import etree
 import argparse
 from curses import ascii
 from collections import defaultdict
-from colorlog import ColoredFormatter
+#from colorlog import ColoredFormatter
 import logging
 import time
 from enum import Enum
@@ -32,12 +32,12 @@ args = parser.parse_args()
 
 # Configure logging
 LOG_LEVEL = logging.DEBUG
-LOGFORMAT = "  %(log_color)s%(levelname)-8s%(reset)s | %(log_color)s%(message)s%(reset)s"
+#LOGFORMAT = "  %(levelname)-8s%(reset)s | %(message)s%(reset)s"
 logging.root.setLevel(LOG_LEVEL)
-formatter = ColoredFormatter(LOGFORMAT)
+#formatter = logging.Formatter(LOGFORMAT)
 stream = logging.StreamHandler()
 stream.setLevel(LOG_LEVEL)
-stream.setFormatter(formatter)
+#stream.setFormatter(formatter)
 log = logging.getLogger('TEI4BPS Converter')
 log.setLevel(LOG_LEVEL)
 log.addHandler(stream)
@@ -107,6 +107,7 @@ def ingest(file, params):
         c = csv.reader(f, dialect=csv.excel_tab)
     else:
         c = csv.reader(f)
+
     data = defaultdict(list)
 
     size =0
